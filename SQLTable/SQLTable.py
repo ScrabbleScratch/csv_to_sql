@@ -4,7 +4,7 @@
 
 import errno
 from os import strerror
-from re import search, split
+from re import search
 
 # open the table to be converted
 while True:
@@ -23,12 +23,13 @@ while True:
         print(E, "Try again!\n", sep="\n")
 
 # separate each column in a new variable
-csvPattern = r"\".+?\"|[^\"]+?(?=,)|(?<=,)[^\"]+"
 tableCols = []
 header = table[0].split(",")
 for row in table:
-    t_row = split(csvPattern, row)
+    t_row = row.split(",")
     print(len(t_row))
     tableCols.append(t_row)
 
+#for i in tableCols:
+    #print("NL: ", i)
 print(len(tableCols))
