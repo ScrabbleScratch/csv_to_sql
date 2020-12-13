@@ -7,9 +7,6 @@ import errno
 from os import strerror
 from re import search
 
-def _filter(val):
-    return val != '' and val != ',' and val != '\n' and val is not None
-
 # open the table to be converted
 while True:
     try:
