@@ -2,9 +2,13 @@
 # PROGRAM TO CONVERT A TABLE INTO AN SQL SCRIPT #
 #################################################
 
+import re
 import errno
 from os import strerror
 from re import search
+
+def _filter(val):
+    return val != '' and val != ',' and val != '\n' and val is not None
 
 # open the table to be converted
 while True:
@@ -26,7 +30,7 @@ while True:
 tableCols = []
 header = table[0].split(",")
 for row in table:
-    t_row = row.split(",")
+    t_row = list(filter(_filter, re.split('(\,|\n|^)(?:"([^"]*(?:""[^"]*)*)"|([^"\,\n]*))', row)))
     print(len(t_row))
     tableCols.append(t_row)
 
